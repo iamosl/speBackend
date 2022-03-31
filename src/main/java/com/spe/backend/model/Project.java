@@ -26,5 +26,5 @@ public class Project {
 	@Column(nullable = false, length=512)
     private String projectLink;
 	
-	//Not yet sure about the tech stack field 	
+	//Many to many relationship with Tech (skills)	
 }
