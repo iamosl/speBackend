@@ -25,13 +25,20 @@ public class ProfileService {
 		ArrayList<Project> projects = new ArrayList<>();
 		for(Project p: profile.getProjects())
 		{
+//			System.out.println("Project starts");
+//			System.out.println(p.getName());
+//			System.out.println(p.getName());
+//			System.out.println(p.getName());
+//			System.out.println("Project ends");
+			
 			Project pro = new Project(p.getName(),p.getDescription(),p.getProjectLink());
 			Set<Tech> skills = new HashSet();
 			for(Tech s: p.getSkills())
 			{
 				skills.add(s);
 			}
-			p.setSkills(skills);
+			pro.setSkills(skills);
+			projects.add(pro);
 		}
 		newProfile.setProjects(projects);
 		Set<Tech> skills = new HashSet();
