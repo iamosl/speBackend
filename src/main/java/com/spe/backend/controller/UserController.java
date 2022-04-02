@@ -30,7 +30,7 @@ public class UserController {
     
 //    API to login 
     @PostMapping("/signIn")
-    public SignInResponseDto Signup(@RequestBody SignInDto signInDto) throws CustomException {
+    public SignInResponseDto Signin(@RequestBody SignInDto signInDto) throws CustomException {
         return userService.signIn(signInDto);
     }
 
