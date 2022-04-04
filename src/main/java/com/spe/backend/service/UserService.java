@@ -49,7 +49,7 @@ public class UserService {
         // passwords do not match
             throw  new CustomException("Incorrect Password or Email ID");
         }
-        return new SignInResponseDto ("success");
+        return new SignInResponseDto ("success",user);
     }
 	
 }
