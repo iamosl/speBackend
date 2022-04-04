@@ -24,13 +24,7 @@ public class ProfileService {
 		newProfile.setUser(profile.getUser());
 		ArrayList<Project> projects = new ArrayList<>();
 		for(Project p: profile.getProjects())
-		{
-//			System.out.println("Project starts");
-//			System.out.println(p.getName());
-//			System.out.println(p.getName());
-//			System.out.println(p.getName());
-//			System.out.println("Project ends");
-			
+		{	
 			Project pro = new Project(p.getName(),p.getDescription(),p.getProjectLink());
 			Set<Tech> skills = new HashSet();
 			for(Tech s: p.getSkills())
