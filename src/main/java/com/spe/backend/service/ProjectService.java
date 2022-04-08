@@ -25,6 +25,7 @@ public class ProjectService {
 		{
 			skills.add(s);
 		}
+		pro.setProfile(p.getProfile());
 		pro.setSkills(skills);
 		return projectRepository.save(pro);
 		
@@ -35,4 +36,10 @@ public class ProjectService {
 		projectRepository.findAll().forEach(records::add);
 		return records;
 	}
+	
+//	public List<Project> getAllProjectsByUserId(long userId){
+//		List<Project> records = new ArrayList<Project>();
+//		projectRepository.findByProfileId(userId);
+//		return records;
+//	}
 }
