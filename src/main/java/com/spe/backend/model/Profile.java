@@ -28,11 +28,12 @@ public class Profile {
 	
 	public Profile() {}
 
-	public Profile(String profession, String expertise, String experience) {
+	public Profile(String profession, String expertise, String experience, String bio) {
 		super();
 		this.profession = profession;
 		this.expertise = expertise;
 		this.experience = experience;
+		this.bio = bio;
 	}
 
 	@Id
@@ -45,10 +46,10 @@ public class Profile {
     private User user;
 
 	//One to Many relationship with projects (similar to c form and medicines in health care project)
-	@OneToMany(targetEntity = Project.class, cascade = CascadeType.ALL, orphanRemoval = true)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinColumn(name = "profileId", referencedColumnName = "id")
-	private List<Project> projects;
+//	@OneToMany(targetEntity = Project.class, cascade = CascadeType.ALL, orphanRemoval = true)
+//	@LazyCollection(LazyCollectionOption.FALSE)
+//	@JoinColumn(name = "profileId", referencedColumnName = "id")
+//	private List<Project> projects;
 	
 	//Many to many relationship with Tech (skills)
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -69,7 +70,18 @@ public class Profile {
 	@Column(nullable = false, length = 20)
 	private String experience;
 	
+	@Column(nullable = false, length=512)
+    private String bio;
+
 //	Getters and setters
+	public String getBio() {
+			return bio;
+		}
+	
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -86,13 +98,13 @@ public class Profile {
 		this.user = user;
 	}
 
-	public List<Project> getProjects() {
-		return projects;
-	}
-
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
-	}
+//	public List<Project> getProjects() {
+//		return projects;
+//	}
+//
+//	public void setProjects(List<Project> projects) {
+//		this.projects = projects;
+//	}
 
 	public Set<Tech> getSkills() {
 		return skills;

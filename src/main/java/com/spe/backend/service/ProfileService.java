@@ -20,21 +20,21 @@ public class ProfileService {
 	private ProfileRepository profileRepository;
 	
 	public Profile addNewProfile(Profile profile) {
-		Profile newProfile = new Profile(profile.getProfession(),profile.getExpertise(),profile.getExperience());
+		Profile newProfile = new Profile(profile.getProfession(),profile.getExpertise(),profile.getExperience(),profile.getBio());
 		newProfile.setUser(profile.getUser());
 		ArrayList<Project> projects = new ArrayList<>();
-		for(Project p: profile.getProjects())
-		{	
-			Project pro = new Project(p.getName(),p.getDescription(),p.getProjectLink());
-			Set<Tech> skills = new HashSet();
-			for(Tech s: p.getSkills())
-			{
-				skills.add(s);
-			}
-			pro.setSkills(skills);
-			projects.add(pro);
-		}
-		newProfile.setProjects(projects);
+//		for(Project p: profile.getProjects())
+//		{	
+//			Project pro = new Project(p.getName(),p.getDescription(),p.getProjectLink());
+//			Set<Tech> skills = new HashSet();
+//			for(Tech s: p.getSkills())
+//			{
+//				skills.add(s);
+//			}
+//			pro.setSkills(skills);
+//			projects.add(pro);
+//		}
+//		newProfile.setProjects(projects);
 		Set<Tech> skills = new HashSet();
 		for(Tech s: profile.getSkills())
 		{

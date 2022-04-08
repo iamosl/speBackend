@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,8 +32,11 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	// have added one to many relationship in the profile class 
-	
+	// many to one relationship to the profile class
+	@ManyToOne(optional = false)
+    @JoinColumn(name="ProfileId")
+    private Profile profile;
+
 	@Column(nullable = false, length = 40)
     private String name;
 	
@@ -89,5 +93,12 @@ public class Project {
 		this.skills = skills;
 	}
 	
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
 	
 }
