@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spe.backend.model.Profile;
-import com.spe.backend.model.Project;
 import com.spe.backend.model.Tech;
 import com.spe.backend.repository.ProfileRepository;
 
@@ -20,21 +19,8 @@ public class ProfileService {
 	private ProfileRepository profileRepository;
 	
 	public Profile addNewProfile(Profile profile) {
-		Profile newProfile = new Profile(profile.getProfession(),profile.getExpertise(),profile.getExperience());
+		Profile newProfile = new Profile(profile.getProfession(),profile.getExpertise(),profile.getExperience(),profile.getBio());
 		newProfile.setUser(profile.getUser());
-		ArrayList<Project> projects = new ArrayList<>();
-		for(Project p: profile.getProjects())
-		{	
-			Project pro = new Project(p.getName(),p.getDescription(),p.getProjectLink());
-			Set<Tech> skills = new HashSet();
-			for(Tech s: p.getSkills())
-			{
-				skills.add(s);
-			}
-			pro.setSkills(skills);
-			projects.add(pro);
-		}
-		newProfile.setProjects(projects);
 		Set<Tech> skills = new HashSet();
 		for(Tech s: profile.getSkills())
 		{
@@ -49,5 +35,9 @@ public class ProfileService {
 		List<Profile> records = new ArrayList<Profile>();
 		profileRepository.findAll().forEach(records::add);
 		return records;
+	}
+	
+	public Profile getByUserId(long userId){
+		return profileRepository.findByUserId(userId);
 	}
 }
