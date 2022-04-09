@@ -37,9 +37,9 @@ public class ProjectService {
 		return records;
 	}
 	
-//	public List<Project> getAllProjectsByUserId(long userId){
-//		List<Project> records = new ArrayList<Project>();
-//		projectRepository.findByProfileId(userId);
-//		return records;
-//	}
+	public List<Project> getAllProjectsByUserId(long userId){
+		List<Project> records = new ArrayList<Project>();
+		records = projectRepository.findByProfileUserId(userId);
+		return records;
+	}
 }

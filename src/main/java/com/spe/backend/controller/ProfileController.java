@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,5 +38,10 @@ public class ProfileController {
 	public List<Profile> getAllProfiles() {
 		List<Profile> records = profileService.getAllProfiles();
 		return records;
+	}
+	
+	@GetMapping(path = "/userId/{id}")
+	public Profile getProfileByUserId(@PathVariable(value = "id", required = true) long id) {
+		return profileService.getByUserId(id);
 	}
 }

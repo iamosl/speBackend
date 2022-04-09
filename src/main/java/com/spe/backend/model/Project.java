@@ -34,7 +34,7 @@ public class Project {
 	
 	// many to one relationship to the profile class
 	@ManyToOne(optional = false)
-    @JoinColumn(name="ProfileId")
+    @JoinColumn(name="profileId")
     private Profile profile;
 
 	@Column(nullable = false, length = 40)
