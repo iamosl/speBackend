@@ -19,15 +19,15 @@ public class ProjectService {
 	private ProjectRepository projectRepository;
 	
 	public Project addNewProject(Project p) {
-		Project pro = new Project(p.getName(),p.getDescription(),p.getProjectLink());
-		Set<Tech> skills = new HashSet();
-		for(Tech s: p.getSkills())
-		{
-			skills.add(s);
-		}
-		pro.setProfile(p.getProfile());
-		pro.setSkills(skills);
-		return projectRepository.save(pro);
+//		Project pro = new Project(p.getName(),p.getDescription(),p.getProjectLink());
+//		Set<Tech> skills = new HashSet();
+//		for(Tech s: p.getSkills())
+//		{
+//			skills.add(s);
+//		}
+//		pro.setProfile(p.getProfile());
+//		pro.setSkills(skills);
+		return projectRepository.save(p);
 		
 	}
 

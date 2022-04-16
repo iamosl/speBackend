@@ -44,12 +44,6 @@ public class Profile {
 	@OneToOne
     @JoinColumn(name="userId")
     private User user;
-
-	//One to Many relationship with projects (similar to c form and medicines in health care project)
-//	@OneToMany(targetEntity = Project.class, cascade = CascadeType.ALL, orphanRemoval = true)
-//	@LazyCollection(LazyCollectionOption.FALSE)
-//	@JoinColumn(name = "profileId", referencedColumnName = "id")
-//	private List<Project> projects;
 	
 	//Many to many relationship with Tech (skills)
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -59,18 +53,18 @@ public class Profile {
 	private Set<Tech> skills = new HashSet<>();
 	
 	//working or student options given in the front-end
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false,length = 20)
     private String profession;
 	
 	//front-end, back-end and full-stack options given in the front-end
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false,length = 20)
 	private String expertise;
 	
 	//experience on a scale of 1-5 for the given expertise
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false,length = 20)
 	private String experience;
 	
-	@Column(nullable = false, length=512)
+	@Column(nullable = false,length=512)
     private String bio;
 
 //	Getters and setters

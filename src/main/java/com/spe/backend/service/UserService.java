@@ -10,6 +10,7 @@ import com.spe.backend.dto.request.SignUpDto;
 import com.spe.backend.dto.response.SignInResponseDto;
 import com.spe.backend.dto.response.SignUpResponseDto;
 import com.spe.backend.exception.CustomException;
+import com.spe.backend.model.Profile;
 import com.spe.backend.model.User;
 import com.spe.backend.repository.UserRepository;
 
@@ -28,7 +29,8 @@ public class UserService {
 		User user = new User(signupDto.getEmail(),signupDto.getPassword() ,signupDto.getName());
 		try {
             // save the User
-             userRepository.save(user);
+//			System.out.println(user.getEmail());
+            userRepository.save(user);
             // success in creating
             return new SignUpResponseDto("success", "user created successfully");
         } catch (Exception e) {
