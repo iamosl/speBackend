@@ -1,6 +1,7 @@
 package com.spe.backend.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spe.backend.model.Post;
+import com.spe.backend.model.Profile;
 import com.spe.backend.model.Project;
 import com.spe.backend.service.PostService;
 
@@ -37,5 +39,15 @@ public class PostController {
 	@GetMapping(path = "/userId/{id}")
 	public List<Post> getAllPostsByUserId(@PathVariable(value = "id", required = true) long id) {
 		return ServiceHandler.getAllPostsByUserId(id);
+	}
+	
+	@GetMapping(path = "/{id}")
+	public Optional<Post> getPostByPostId(@PathVariable(value = "id", required = true) long id) {
+		return ServiceHandler.getPostById(id);
+	}
+	
+	@PostMapping(path = "/addInterested/{id}")
+	public void addInterestedProfile(@PathVariable(value = "id", required = true) long id,@RequestBody Profile profile) {
+		ServiceHandler.addInterestedProfile(id, profile);
 	}
 }
