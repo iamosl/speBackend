@@ -30,12 +30,24 @@ public class Post {
 		this.description = description;
 	}
 
+	public Set<Profile> getInterestedProfiles() {
+		return interestedProfiles;
+	}
+
+	public void setInterestedProfiles(Set<Profile> interestedProfiles) {
+		this.interestedProfiles = interestedProfiles;
+	}
+	
+	public void addInterestedProfile(Profile profile) {
+		this.interestedProfiles.add(profile);
+	}
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
 	@ManyToOne(optional = false)
-	private Profile profile;;
+	private Profile profile;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Tech> skills = new HashSet<>();
@@ -45,6 +57,9 @@ public class Post {
 	
 	@Column(name="Description",length=512)
 	private String description;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Profile> interestedProfiles = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -86,7 +101,11 @@ public class Post {
 		this.description = description;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", profile=" + profile + ", skills=" + skills + ", title=" + title + ", description="
+				+ description + ", interestedProfiles=" + interestedProfiles + "]";
+	}
 	
 	
 	
