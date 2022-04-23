@@ -26,14 +26,14 @@ public class ProfileController {
 		this.profileService = profileService;
 	}
 	
-	//API to Add a new Consultation record to the database 
+	//API to Add a new profile to the database 
 	@PostMapping
 	public Profile addNewProfile(@RequestBody Profile profile) {
 		return profileService.addNewProfile(profile);
 
 	}
 		
-	//API to Get all Consultation records in the database
+	//API to Get all Profiles in the database
 	@GetMapping
 	public List<Profile> getAllProfiles() {
 		List<Profile> records = profileService.getAllProfiles();
@@ -43,5 +43,11 @@ public class ProfileController {
 	@GetMapping(path = "/userId/{id}")
 	public Profile getProfileByUserId(@PathVariable(value = "id", required = true) long id) {
 		return profileService.getByUserId(id);
+	}
+	
+	//API to update a Profile given a Profile Id
+	@PostMapping(path = "/update/{id}")
+	public Profile updateProfile(@PathVariable(value = "id", required = true) long id,@RequestBody Profile profile) {
+		return profileService.updateProfile(id, profile);
 	}
 }
