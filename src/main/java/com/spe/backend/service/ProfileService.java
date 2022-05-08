@@ -38,7 +38,9 @@ public class ProfileService {
 	}
 	
 	public Profile getByUserId(long userId){
-		return profileRepository.findByUserId(userId);
+		Profile p = profileRepository.findByUserId(userId);
+		p.getUser().setPassword(null);
+		return p;
 	}
 	
 	public Profile updateProfile(long profileId,Profile newProfile)
