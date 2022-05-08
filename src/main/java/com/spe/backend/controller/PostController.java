@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,4 +51,10 @@ public class PostController {
 	public void addInterestedProfile(@PathVariable(value = "id", required = true) long id,@RequestBody Profile profile) {
 		ServiceHandler.addInterestedProfile(id, profile);
 	}
+	
+	//API to delete post
+    @DeleteMapping("/delete/{id}")
+    public void deletePostById(@PathVariable(value = "id", required = true) long id){
+    	ServiceHandler.deletePostById(id);
+    }
 }

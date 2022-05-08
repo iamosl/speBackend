@@ -2,6 +2,8 @@ package com.spe.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,16 +24,22 @@ public class UserController {
     @Autowired
     UserService userService;
     
-//    API to register a new user to the system
+    //API to register a new user to the system
     @PostMapping("/signUp")
-    public SignUpResponseDto Signup(@RequestBody SignUpDto signupDto) throws CustomException {
+    public SignUpResponseDto signUp(@RequestBody SignUpDto signupDto) throws CustomException {
         return userService.signUp(signupDto);
     }
     
-//    API to login 
+    //API to login 
     @PostMapping("/signIn")
-    public SignInResponseDto Signin(@RequestBody SignInDto signInDto) throws CustomException {
+    public SignInResponseDto signIn(@RequestBody SignInDto signInDto) throws CustomException {
         return userService.signIn(signInDto);
+    }
+    
+    //API to delete user (useful for testing with mock users)
+    @DeleteMapping("/delete/{id}")
+    public void deleteUserById(@PathVariable(value = "id", required = true) long id){
+    	userService.deleteUserById(id);
     }
 
 }

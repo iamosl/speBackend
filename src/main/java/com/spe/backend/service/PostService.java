@@ -44,4 +44,8 @@ public class PostService {
 	{
 		return this.PostHandler.findById(postId);
 	}
+	
+	public void deletePostById(long id) {
+		PostHandler.deleteById(id);
+	}
 }

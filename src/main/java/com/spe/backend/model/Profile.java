@@ -20,6 +20,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
@@ -43,6 +45,7 @@ public class Profile {
 	//One to One link with user table
 	@OneToOne
     @JoinColumn(name="userId")
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 	
 	//Many to many relationship with Tech (skills)

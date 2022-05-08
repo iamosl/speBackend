@@ -28,8 +28,6 @@ public class UserService {
 		}
 		User user = new User(signupDto.getEmail(),signupDto.getPassword() ,signupDto.getName());
 		try {
-            // save the User
-//			System.out.println(user.getEmail());
             userRepository.save(user);
             // success in creating
             return new SignUpResponseDto("success", "user created successfully");
@@ -54,5 +52,9 @@ public class UserService {
         user.setPassword(null); 
         return new SignInResponseDto ("success",user);
     }
+
+	public void deleteUserById(long id) {
+		userRepository.deleteById(id);
+	}
 	
 }

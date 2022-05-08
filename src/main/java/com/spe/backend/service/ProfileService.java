@@ -49,4 +49,8 @@ public class ProfileService {
 		oldProfile = newProfile;
 		return profileRepository.save(oldProfile);
 	}
+	
+	public void deleteProfileById(long id) {
+		profileRepository.deleteById(id);
+	}
 }
