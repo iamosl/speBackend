@@ -1,0 +1,13 @@
+---
+- name: Pull and run the backend and database images
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Copy docker-compose file from folder to remote host
+      copy:
+        src: ../docker-compose.yml
+        dest: ./server/
+    - name: Pull images as specified in docker compose
+      command: docker-compose -f ./server/docker-compose.yml pull
+    - name: Running the containers using docker-compose
+      command: docker-compose -f ./server/docker-compose.yml up -d
