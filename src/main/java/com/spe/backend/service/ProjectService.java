@@ -42,4 +42,16 @@ public class ProjectService {
 		records = projectRepository.findByProfileUserId(userId);
 		return records;
 	}
+	
+	public Project updateProject(long projectId,Project newProject)
+	{
+		Project oldProject = projectRepository.findById(projectId).orElse(null);
+		oldProject = newProject;
+		return projectRepository.save(oldProject);
+	}
+	
+	public void deleteProject(long projectId)
+	{
+		projectRepository.deleteById(projectId);
+	}
 }
