@@ -51,6 +51,7 @@ public class UserService {
         // passwords do not match
             throw  new CustomException("Incorrect Password or Email ID");
         }
+        user.setPassword(null); 
         return new SignInResponseDto ("success",user);
     }
 	
