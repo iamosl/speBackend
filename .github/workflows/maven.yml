@@ -11,8 +11,15 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: spe_database
+        ports:
+          - 3307:3306
 
     steps:
     - uses: mirromutth/mysql-action@v1.1
