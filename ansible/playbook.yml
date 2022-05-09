@@ -1,7 +1,7 @@
 ---
 - name: Pull and run the backend and database images
-  hosts: localhost
-  connection: local
+  hosts: azure
+#  connection: local
   tasks:
     - name: Copy docker-compose file from folder to remote host
       copy:
@@ -9,5 +9,7 @@
         dest: ./server/
     - name: Pull images as specified in docker compose
       command: docker-compose -f ./server/docker-compose.yml pull
+    - name: Stopping the previous containers using docker-compose
+      command: docker-compose -f ./server/docker-compose.yml down
     - name: Running the containers using docker-compose
       command: docker-compose -f ./server/docker-compose.yml up -d
