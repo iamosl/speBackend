@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: Initialize MySQL
-      run: mysql -u root -p password
+      run: mysql -h 127.0.0.1 -P 3306 -u root -p password
 #    - name: Set up MySQL
 #      run: |
 #        sudo /etc/init.d/mysql start
