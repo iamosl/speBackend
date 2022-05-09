@@ -1,1 +1,2 @@
-insert into spe_database.skills(skill) values ("ReactJS"),("SpringBoot"),("Java"),("Python3"),("C++"),("Git"),("MongoDB"),("MySQL"),("AngularJS"),("HTML"),("CSS"),("Javascript"),("Node JS"),("Express"),("Postgres");
+--delete from spe_database.skills;
+insert ignore into spe_database.skills(skill) values ("ReactJS"),("SpringBoot"),("Java"),("Python3"),("C++"),("Git"),("MongoDB"),("MySQL"),("AngularJS"),("HTML"),("CSS"),("Javascript"),("Node JS"),("Express"),("Postgres");
