@@ -24,8 +24,8 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-    - name: Initialize MySQL
-      run: mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS spe_database;'
+#    - name: Initialize MySQL
+#      run: mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS spe_database;'
 #    - name: Set up MySQL
 #      run: |
 #        sudo /etc/init.d/mysql start
@@ -42,7 +42,7 @@ jobs:
     - name: Build and push image to docker hub
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
-        image: imosl/spe_server
+        image: iamosl/spe_server
         registry: docker.io
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
