@@ -16,8 +16,8 @@ jobs:
       mysql:
         image: mysql
         env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: spe_database
+          MYSQL_ROOT_PASSWORD: 'password'
+          MYSQL_DATABASE: 'spe_database'
         ports:
           - 3306:3306
 
