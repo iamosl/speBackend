@@ -12,16 +12,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql
-        env:
-          MYSQL_ROOT_PASSWORD: 'password'
-          MYSQL_DATABASE: 'spe_database'
-        ports:
-          - 3306:3306
+#    services:
+#      mysql:
+#        image: mysql
+    env:
+      DB_DATABASE: spe_database
+      DB_USER: root
+      DB_PASSWORD: password
+    ports:
+      - 3306:3306
 
     steps:
+    - name: Set up MySQL
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
     - uses: actions/checkout@v3
     - name: Set up JDK 11
       uses: actions/setup-java@v3
