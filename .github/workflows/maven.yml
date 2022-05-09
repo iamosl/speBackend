@@ -18,14 +18,14 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: "password"
           MYSQL_DATABASE: "spe_database"
-          MYSQL_ROOT_HOST: localhost
+          MYSQL_ROOT_HOST: 127.0.0.1
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - name: Initialize MySQL
-      run: mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS spe_database;'
+      run: mysql -h 172.18.0.1 -P 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS spe_database;'
 #    - name: Set up MySQL
 #      run: |
 #        sudo /etc/init.d/mysql start
