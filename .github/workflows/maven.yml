@@ -24,7 +24,7 @@ jobs:
 
     steps:
     - name: Initialize MySQL
-      run: mysql -h 127.0.0.1 -P 3306 -u root -p password -e 'CREATE DATABASE IF NOT EXISTS spe_database;'
+      run: mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS spe_database;'
 #    - name: Set up MySQL
 #      run: |
 #        sudo /etc/init.d/mysql start
