@@ -40,4 +40,11 @@ public class ProfileService {
 	public Profile getByUserId(long userId){
 		return profileRepository.findByUserId(userId);
 	}
+	
+	public Profile updateProfile(long profileId,Profile newProfile)
+	{
+		Profile oldProfile = profileRepository.findById(profileId).orElse(null);
+		oldProfile = newProfile;
+		return profileRepository.save(oldProfile);
+	}
 }

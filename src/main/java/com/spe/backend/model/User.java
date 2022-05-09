@@ -2,6 +2,8 @@ package com.spe.backend.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -32,6 +34,17 @@ public class User {
      
     @Column(nullable = false, length = 20)
     private String name;
+    
+//    @OneToOne(mappedBy = "user")
+//    private Profile profile;
+//    
+//	public Profile getProfile() {
+//		return profile;
+//	}
+//
+//	public void setProfile(Profile profile) {
+//		this.profile = profile;
+//	}
 
 	public Long getId() {
 		return id;
