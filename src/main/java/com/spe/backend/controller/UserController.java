@@ -15,7 +15,7 @@ import com.spe.backend.exception.CustomException;
 import com.spe.backend.service.UserService;
 
 @RequestMapping("api/user")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://20.239.187.64:3000"})
 @RestController
 public class UserController {
 

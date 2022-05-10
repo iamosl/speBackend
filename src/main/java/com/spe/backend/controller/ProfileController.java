@@ -16,7 +16,7 @@ import com.spe.backend.model.Profile;
 import com.spe.backend.service.ProfileService;
 
 @RequestMapping("api/profile")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://20.239.187.64:3000"})
 @RestController
 public class ProfileController {
 

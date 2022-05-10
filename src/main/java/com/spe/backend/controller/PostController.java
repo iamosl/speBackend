@@ -18,7 +18,7 @@ import com.spe.backend.model.Project;
 import com.spe.backend.service.PostService;
 
 @RequestMapping("api/post")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://20.239.187.64:3000"})
 @RestController
 public class PostController {
 	
