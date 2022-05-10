@@ -3,6 +3,8 @@ package com.spe.backend.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ import com.spe.backend.service.PostService;
 @CrossOrigin(origins = {"http://localhost:3000", "http://20.239.187.64:3000"})
 @RestController
 public class PostController {
+	Logger logger = LoggerFactory.getLogger(PostController.class);
 	
 	@Autowired
 	private PostService ServiceHandler;
@@ -32,22 +35,25 @@ public class PostController {
 	
 	@PostMapping
 	public void addPost(@RequestBody Post post) {
-		System.out.println(post.getDescription());
+		logger.info("add a new post");
 		this.ServiceHandler.addPost(post);
 	}
 	
 	@GetMapping(path = "/userId/{id}")
 	public List<Post> getAllPostsByUserId(@PathVariable(value = "id", required = true) long id) {
+		logger.info("get all posts by user id");
 		return ServiceHandler.getAllPostsByUserId(id);
 	}
 	
 	@GetMapping(path = "/{id}")
 	public Optional<Post> getPostByPostId(@PathVariable(value = "id", required = true) long id) {
+		logger.info("get a post");
 		return ServiceHandler.getPostById(id);
 	}
 	
 	@PostMapping(path = "/addInterested/{id}")
 	public void addInterestedProfile(@PathVariable(value = "id", required = true) long id,@RequestBody Profile profile) {
+		logger.info("add interested profile to a post");
 		ServiceHandler.addInterestedProfile(id, profile);
 	}
 }

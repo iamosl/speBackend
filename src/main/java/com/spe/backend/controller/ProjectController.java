@@ -2,6 +2,8 @@ package com.spe.backend.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,7 @@ import com.spe.backend.service.ProjectService;
 @RestController
 public class ProjectController {
 	
+	Logger logger = LoggerFactory.getLogger(ProjectController.class);
 	private final ProjectService projectService;
 	
 	@Autowired
@@ -29,32 +32,37 @@ public class ProjectController {
 		this.projectService = projectService;
 	}
 	
-	//API to Add a new Consultation record to the database 
+	//API to Add a new Project to the database 
 	@PostMapping
 	public Project addNewProject(@RequestBody Project project) {
+		logger.info("add a new project");
 		return projectService.addNewProject(project);
 	}
 	
-	//API to Add a new Consultation record to the database 
+	//API to get all projects from the database 
 	@GetMapping
 	public List<Project> getAllProjects() {
+		logger.info("get all projects");
 		return projectService.getAllProjects();
 	}
 	
 	@GetMapping(path = "/userId/{id}")
 	public List<Project> getAllProjectsByUserId(@PathVariable(value = "id", required = true) long id) {
+		logger.info("get all proejcts of a user");
 		return projectService.getAllProjectsByUserId(id);
 	}
 	
 	//API to update a Project given a Project Id
 	@PutMapping(path = "/update/{id}")
 	public Project updateProjectById(@PathVariable(value = "id", required = true) long id,@RequestBody Project project) {
+		logger.info("update a project");
 		return projectService.updateProject(id, project);
 	}
 	
 	@DeleteMapping(path="/delete/{id}")
 	public void deleteProjectbyId(@PathVariable(value = "id", required = true) long id)
 	{
+		logger.info("delete a project");
 		projectService.deleteProject(id);
 	}
 
