@@ -101,5 +101,11 @@ public class Project {
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
+
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", profile=" + profile + ", name=" + name + ", description=" + description
+				+ ", projectLink=" + projectLink + ", skills=" + skills + "]";
+	}
 	
 }

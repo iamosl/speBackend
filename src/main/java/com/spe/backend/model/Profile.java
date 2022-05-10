@@ -131,4 +131,12 @@ public class Profile {
 	public void setExperience(String experience) {
 		this.experience = experience;
 	}
+
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", user=" + user + ", skills=" + skills + ", profession=" + profession
+				+ ", expertise=" + expertise + ", experience=" + experience + ", bio=" + bio + "]";
+	}
+	
+	
 }
