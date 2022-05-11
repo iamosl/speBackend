@@ -9,6 +9,8 @@ import com.spe.backend.model.User;
 public interface UserRepository extends JpaRepository<User,Long>{
 	
 	User findByEmail(String emailId);
+
+	User findByUsername(String username);
 	
 	boolean existsByEmail(String emailId);
 	

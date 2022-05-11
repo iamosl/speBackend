@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,8 @@ public class ProjectController {
 		this.projectService = projectService;
 	}
 	
-	//API to Add a new Project to the database 
+	//API to Add a new Project to the database
+	@PreAuthorize("hasPermission(#project,'project_user:write')")
 	@PostMapping
 	public Project addNewProject(@RequestBody Project project) {
 		logger.info("add a new project");
@@ -45,7 +47,8 @@ public class ProjectController {
 		logger.info("get all projects");
 		return projectService.getAllProjects();
 	}
-	
+
+
 	@GetMapping(path = "/userId/{id}")
 	public List<Project> getAllProjectsByUserId(@PathVariable(value = "id", required = true) long id) {
 		logger.info("get all proejcts of a user");
@@ -53,12 +56,14 @@ public class ProjectController {
 	}
 	
 	//API to update a Project given a Project Id
-	@PutMapping(path = "/update/{id}")
-	public Project updateProjectById(@PathVariable(value = "id", required = true) long id,@RequestBody Project project) {
+	@PreAuthorize("hasPermission(#project,'project_user:update')")
+	@PutMapping(path = "/update/")
+	public Project updateProjectById(@RequestBody Project project) {
 		logger.info("update a project");
-		return projectService.updateProject(id, project);
+		return projectService.updateProject(project);
 	}
-	
+
+	@PreAuthorize("hasPermission(#id,'project_user:delete')")
 	@DeleteMapping(path="/delete/{id}")
 	public void deleteProjectbyId(@PathVariable(value = "id", required = true) long id)
 	{

@@ -43,11 +43,11 @@ public class ProjectService {
 		return records;
 	}
 	
-	public Project updateProject(long projectId,Project newProject)
+	public Project updateProject(Project newProject)
 	{
-		Project oldProject = projectRepository.findById(projectId).orElse(null);
-		oldProject = newProject;
-		return projectRepository.save(oldProject);
+		Project projectDb = projectRepository.findById(newProject.getId()).orElse(null);
+		projectDb = newProject;
+		return projectRepository.save(projectDb);
 	}
 	
 	public void deleteProject(long projectId)

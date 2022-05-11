@@ -1,7 +1,12 @@
 package com.spe.backend.service;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import com.google.common.collect.Sets;
+import com.spe.backend.security.AssignAuthorities;
+import com.spe.backend.security.UserPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +19,16 @@ import com.spe.backend.model.Profile;
 import com.spe.backend.model.User;
 import com.spe.backend.repository.UserRepository;
 
+import static com.spe.backend.security.UserPermission.*;
+
 @Service
 public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
+
+    @Autowired
+    AssignAuthorities assignAuthorities;
 
 	public SignUpResponseDto signUp(SignUpDto signupDto) throws CustomException{
 		if(userRepository.existsByEmail(signupDto.getEmail()))
@@ -26,7 +36,14 @@ public class UserService {
 			System.out.println("User Already exists!");
 			throw new CustomException("User already exists"); 
 		}
-		User user = new User(signupDto.getEmail(),signupDto.getPassword() ,signupDto.getName());
+        Set<UserPermission> permissions = Sets.newHashSet(UserPermission.class.getEnumConstants());
+//        permissions.add(PROFILE_USER_ADD);
+//        permissions.add(PROFILE_USER_READ);
+//        permissions.add(PROFILE_USER_WRITE);
+		User user = new User(signupDto.getEmail(),
+                signupDto.getPassword() ,
+                signupDto.getName(),null);
+        user.setAuthorities(assignAuthorities.getGrantedAuthorities(permissions));
 		try {
             // save the User
 //			System.out.println(user.getEmail());

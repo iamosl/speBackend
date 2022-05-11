@@ -16,7 +16,7 @@ import com.spe.backend.dto.response.SignUpResponseDto;
 import com.spe.backend.exception.CustomException;
 import com.spe.backend.service.UserService;
 
-@RequestMapping("api/user")
+//@RequestMapping("/login")
 @CrossOrigin(origins = {"http://localhost:3000", "http://20.239.187.64:3000"})
 @RestController
 public class UserController {
@@ -34,10 +34,10 @@ public class UserController {
     }
     
 //    API to login 
-    @PostMapping("/signIn")
-    public SignInResponseDto Signin(@RequestBody SignInDto signInDto) throws CustomException {
-    	logger.info("Login");
-        return userService.signIn(signInDto);
-    }
+//    @PostMapping("/login")
+//    public SignInResponseDto Signin(@RequestBody SignInDto signInDto) throws CustomException {
+//    	logger.info("Login");
+//        return userService.signIn(signInDto);
+//    }
 
 }

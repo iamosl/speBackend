@@ -19,16 +19,19 @@ public class ProfileService {
 	private ProfileRepository profileRepository;
 	
 	public Profile addNewProfile(Profile profile) {
-		Profile newProfile = new Profile(profile.getProfession(),profile.getExpertise(),profile.getExperience(),profile.getBio());
-		newProfile.setUser(profile.getUser());
-		Set<Tech> skills = new HashSet();
-		for(Tech s: profile.getSkills())
-		{
-			skills.add(s);
-		}
-		newProfile.setSkills(skills);
-		return profileRepository.save(newProfile);
-		
+//		Profile newProfile = new Profile(profile.getProfession(),profile.getExpertise(),profile.getExperience(),profile.getBio());
+//		newProfile.setUser(profile.getUser());
+//		Set<Tech> skills = new HashSet();
+//		for(Tech s: profile.getSkills())
+//		{
+//			skills.add(s);
+//		}
+//		newProfile.setSkills(skills);
+		Profile prof = profileRepository.findById(profile.getId()).orElse(null);
+		if(prof==null)
+			return profileRepository.save(profile);
+		prof=profile;
+		return profileRepository.save(prof);
 	}
 
 	public List<Profile> getAllProfiles() {

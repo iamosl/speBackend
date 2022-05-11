@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,12 +31,12 @@ public class ProfileController {
 		this.profileService = profileService;
 	}
 	
-	//API to Add a new profile to the database 
+	//API to Add a new profile to the database
+	@PreAuthorize("hasPermission(#profile,'profile_user:add')")
 	@PostMapping
 	public Profile addNewProfile(@RequestBody Profile profile) {
 		logger.info("add a new profile");
 		return profileService.addNewProfile(profile);
-
 	}
 		
 	//API to Get all Profiles in the database
@@ -45,7 +46,8 @@ public class ProfileController {
 		List<Profile> records = profileService.getAllProfiles();
 		return records;
 	}
-	
+
+	@PreAuthorize("hasPermission(#id,'profile_user:read')")
 	@GetMapping(path = "/userId/{id}")
 	public Profile getProfileByUserId(@PathVariable(value = "id", required = true) long id) {
 		logger.info("get profile by userid");
@@ -53,7 +55,8 @@ public class ProfileController {
 	}
 	
 	//API to update a Profile given a Profile Id
-	@PutMapping(path = "/update/{id}")
+	@PreAuthorize("hasPermission(#profile,'profile_user:write')")
+	@PutMapping(path = "/update/")
 	public Profile updateProfile(@PathVariable(value = "id", required = true) long id,@RequestBody Profile profile) {
 		logger.info("update a profile");
 		return profileService.updateProfile(id, profile);
