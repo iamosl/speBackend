@@ -10,5 +10,6 @@ import com.spe.backend.model.Profile;
 public interface ProfileRepository extends JpaRepository<Profile,Long>{
 	
 	Profile findByUserId(long userId);
+	Profile findByUserUsername(String username);
 
 }

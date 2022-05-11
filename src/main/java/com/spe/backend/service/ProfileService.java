@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.spe.backend.model.*;
+import com.spe.backend.repository.PostRepository;
+import com.spe.backend.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spe.backend.model.Profile;
-import com.spe.backend.model.Tech;
 import com.spe.backend.repository.ProfileRepository;
 
 @Service
@@ -17,6 +19,12 @@ public class ProfileService {
 
 	@Autowired
 	private ProfileRepository profileRepository;
+
+	@Autowired
+	private ProjectRepository projectRepository;
+
+	@Autowired
+	private PostRepository postRepository;
 	
 	public Profile addNewProfile(Profile profile) {
 //		Profile newProfile = new Profile(profile.getProfession(),profile.getExpertise(),profile.getExperience(),profile.getBio());
@@ -49,5 +57,25 @@ public class ProfileService {
 		Profile oldProfile = profileRepository.findById(profileId).orElse(null);
 		oldProfile = newProfile;
 		return profileRepository.save(oldProfile);
+	}
+
+	public PublicProfile getByUsername(String username) {
+		Profile profile = profileRepository.findByUserUsername(username);
+		List<Project> projects = projectRepository.findByProfileUserId(profile.getUser().getId());
+		projects.stream().forEach(
+				project -> project.setProfile(null));
+		List<Post> posts = postRepository.findByProfileUserId(profile.getUser().getId());
+		posts.stream().forEach(
+				post -> post.setProfile(null));
+
+		PublicProfile prof = new PublicProfile(
+				profile.getUser().getUsername(),
+				profile.getName(),
+				projects,
+				posts,
+				profile.getSkills(),
+				profile.getExpertise()
+		);
+		return prof;
 	}
 }

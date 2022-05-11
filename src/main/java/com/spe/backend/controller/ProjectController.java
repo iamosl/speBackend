@@ -57,7 +57,7 @@ public class ProjectController {
 	
 	//API to update a Project given a Project Id
 	@PreAuthorize("hasPermission(#project,'project_user:update')")
-	@PutMapping(path = "/update/")
+	@PutMapping(path = "/update")
 	public Project updateProjectById(@RequestBody Project project) {
 		logger.info("update a project");
 		return projectService.updateProject(project);

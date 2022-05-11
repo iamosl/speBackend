@@ -28,11 +28,11 @@ public class Profile {
 	
 	public Profile() {}
 
-	public Profile(String profession, String expertise, String experience, String bio) {
+	public Profile(String profession, String expertise, String name, String bio) {
 		super();
 		this.profession = profession;
 		this.expertise = expertise;
-		this.experience = experience;
+		this.name = name;
 		this.bio = bio;
 	}
 
@@ -62,7 +62,7 @@ public class Profile {
 	
 	//experience on a scale of 1-5 for the given expertise
 	@Column(nullable = false,length = 20)
-	private String experience;
+	private String name;
 	
 	@Column(nullable = false,length=512)
     private String bio;
@@ -124,11 +124,11 @@ public class Profile {
 		this.expertise = expertise;
 	}
 
-	public String getExperience() {
-		return experience;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setExperience(String experience) {
-		this.experience = experience;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

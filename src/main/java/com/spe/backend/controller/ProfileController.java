@@ -2,6 +2,7 @@ package com.spe.backend.controller;
 
 import java.util.List;
 
+import com.spe.backend.model.PublicProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,11 @@ public class ProfileController {
 	public Profile updateProfile(@PathVariable(value = "id", required = true) long id,@RequestBody Profile profile) {
 		logger.info("update a profile");
 		return profileService.updateProfile(id, profile);
+	}
+
+	@GetMapping(path = "/public/{username}")
+	public PublicProfile getPublicProfileByUsername(@PathVariable(value = "username", required = true) String username) {
+		logger.info("get public profile by username");
+		return profileService.getByUsername(username);
 	}
 }
