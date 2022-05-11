@@ -44,4 +44,14 @@ public class PostService {
 	{
 		return this.PostHandler.findById(postId);
 	}
+
+    public Post updatePost(Post post) {
+		Post postDb = PostHandler.findById(post.getId()).orElse(null);
+		postDb = post;
+		return PostHandler.save(postDb);
+    }
+
+	public void deleteProject(long postId) {
+		PostHandler.deleteById(postId);
+	}
 }
