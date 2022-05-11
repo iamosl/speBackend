@@ -57,10 +57,10 @@ public class ProfileController {
 	
 	//API to update a Profile given a Profile Id
 	@PreAuthorize("hasPermission(#profile,'profile_user:write')")
-	@PutMapping(path = "/update/")
-	public Profile updateProfile(@PathVariable(value = "id", required = true) long id,@RequestBody Profile profile) {
+	@PutMapping(path = "/update")
+	public Profile updateProfile(@RequestBody Profile profile) {
 		logger.info("update a profile");
-		return profileService.updateProfile(id, profile);
+		return profileService.updateProfile(profile);
 	}
 
 	@GetMapping(path = "/public/{username}")

@@ -27,19 +27,11 @@ public class ProfileService {
 	private PostRepository postRepository;
 	
 	public Profile addNewProfile(Profile profile) {
-//		Profile newProfile = new Profile(profile.getProfession(),profile.getExpertise(),profile.getExperience(),profile.getBio());
-//		newProfile.setUser(profile.getUser());
-//		Set<Tech> skills = new HashSet();
-//		for(Tech s: profile.getSkills())
-//		{
-//			skills.add(s);
-//		}
-//		newProfile.setSkills(skills);
-		Profile prof = profileRepository.findById(profile.getId()).orElse(null);
-		if(prof==null)
-			return profileRepository.save(profile);
-		prof=profile;
-		return profileRepository.save(prof);
+//		Profile prof = profileRepository.findById(profile.getId()).orElse(null);
+//		if(prof==null)
+//			return profileRepository.save(profile);
+//		prof=profile;
+		return profileRepository.save(profile);
 	}
 
 	public List<Profile> getAllProfiles() {
@@ -52,9 +44,11 @@ public class ProfileService {
 		return profileRepository.findByUserId(userId);
 	}
 	
-	public Profile updateProfile(long profileId,Profile newProfile)
+	public Profile updateProfile(Profile newProfile)
 	{
-		Profile oldProfile = profileRepository.findById(profileId).orElse(null);
+		Profile oldProfile = profileRepository.findById(newProfile.getId()).orElse(null);
+		if(oldProfile==null)
+			return profileRepository.save(newProfile);
 		oldProfile = newProfile;
 		return profileRepository.save(oldProfile);
 	}

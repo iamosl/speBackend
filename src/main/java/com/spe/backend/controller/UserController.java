@@ -34,10 +34,10 @@ public class UserController {
     }
     
 //    API to login 
-//    @PostMapping("/login")
-//    public SignInResponseDto Signin(@RequestBody SignInDto signInDto) throws CustomException {
-//    	logger.info("Login");
-//        return userService.signIn(signInDto);
-//    }
+    @PostMapping("/signIn")
+    public SignInResponseDto Signin(@RequestBody SignInDto signInDto) throws CustomException {
+    	logger.info("Login");
+        return userService.signIn(signInDto);
+    }
 
 }

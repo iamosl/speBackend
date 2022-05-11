@@ -37,12 +37,9 @@ public class UserService {
 			throw new CustomException("User already exists"); 
 		}
         Set<UserPermission> permissions = Sets.newHashSet(UserPermission.class.getEnumConstants());
-//        permissions.add(PROFILE_USER_ADD);
-//        permissions.add(PROFILE_USER_READ);
-//        permissions.add(PROFILE_USER_WRITE);
 		User user = new User(signupDto.getEmail(),
                 signupDto.getPassword() ,
-                signupDto.getName(),null);
+                signupDto.getUsername(),null);
         user.setAuthorities(assignAuthorities.getGrantedAuthorities(permissions));
 		try {
             // save the User
@@ -58,15 +55,15 @@ public class UserService {
 
 	public SignInResponseDto signIn(SignInDto signInDto) throws CustomException{
 		// first find User by email
-        User user = userRepository.findByEmail(signInDto.getEmail());
+        User user = userRepository.findByUsername(signInDto.getUsername());
         if(!Objects.nonNull(user)){
         	System.out.println("User does not exist!");
-        	throw  new CustomException("Incorrect Password or Email ID");
+        	throw  new CustomException("Incorrect Password or Username");
         }
         // check if password is right
         if (!user.getPassword().equals((signInDto.getPassword()))){
         // passwords do not match
-            throw  new CustomException("Incorrect Password or Email ID");
+            throw  new CustomException("Incorrect Password or Username  ");
         }
         user.setPassword(null); 
         return new SignInResponseDto ("success",user);

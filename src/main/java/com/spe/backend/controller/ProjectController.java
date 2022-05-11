@@ -51,7 +51,7 @@ public class ProjectController {
 
 	@GetMapping(path = "/userId/{id}")
 	public List<Project> getAllProjectsByUserId(@PathVariable(value = "id", required = true) long id) {
-		logger.info("get all proejcts of a user");
+		logger.info("get all projects of a user");
 		return projectService.getAllProjectsByUserId(id);
 	}
 	

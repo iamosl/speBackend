@@ -1,15 +1,15 @@
 package com.spe.backend.dto.request;
 
 public class SignUpDto {
-    private String name;
+    private String username;
     private String email;
     private String password;
     
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return this.username;
 	}
-	public void setName(String Name) {
-		name = Name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getEmail() {
 		return email;
