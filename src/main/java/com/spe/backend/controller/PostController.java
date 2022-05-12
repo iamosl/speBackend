@@ -64,7 +64,8 @@ public class PostController {
 	}
 	
 	@PostMapping(path = "/addInterested/{id}")
-	public void addInterestedProfile(@PathVariable(value = "id", required = true) long id,@RequestBody Profile profile) {
+	public void addInterestedProfile(@PathVariable(value = "id", required = true) long id,
+									 @RequestBody Profile profile) {
 		logger.info("add interested profile to a post");
 		ServiceHandler.addInterestedProfile(id, profile);
 	}

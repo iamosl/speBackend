@@ -31,7 +31,7 @@ public class UserService {
     AssignAuthorities assignAuthorities;
 
 	public SignUpResponseDto signUp(SignUpDto signupDto) throws CustomException{
-		if(userRepository.existsByEmail(signupDto.getEmail()))
+		if(userRepository.existsByEmail(signupDto.getEmail()) || userRepository.existsByUsername(signupDto.getUsername()))
 		{
 			System.out.println("User Already exists!");
 			throw new CustomException("User already exists"); 

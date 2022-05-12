@@ -56,9 +56,12 @@ public class ProfileService {
 	public PublicProfile getByUsername(String username) {
 		Profile profile = profileRepository.findByUserUsername(username);
 		List<Project> projects = projectRepository.findByProfileUserId(profile.getUser().getId());
+		List<Post> posts = postRepository.findByProfileUserId(profile.getUser().getId());
+		if(projects == null) projects = new ArrayList<>();
+		if(posts == null) posts = new ArrayList<>();
+
 		projects.stream().forEach(
 				project -> project.setProfile(null));
-		List<Post> posts = postRepository.findByProfileUserId(profile.getUser().getId());
 		posts.stream().forEach(
 				post -> post.setProfile(null));
 
@@ -68,7 +71,8 @@ public class ProfileService {
 				projects,
 				posts,
 				profile.getSkills(),
-				profile.getExpertise()
+				profile.getExpertise(),
+				profile.getBio()
 		);
 		return prof;
 	}

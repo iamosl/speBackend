@@ -38,8 +38,8 @@ public class Post {
 		this.interestedProfiles = interestedProfiles;
 	}
 	
-	public void addInterestedProfile(Profile profile) {
-		this.interestedProfiles.add(profile);
+	public void addInterestedProfile(Profile username) {
+		this.interestedProfiles.add(username);
 	}
 
 	@Id

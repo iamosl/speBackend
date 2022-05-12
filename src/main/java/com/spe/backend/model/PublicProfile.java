@@ -11,18 +11,31 @@ public class PublicProfile {
     private Set<Tech> skills;
     private String expertise;
 
+    private String bio;
+
     public PublicProfile(String username,
                          String name,
                          List<Project> projectList,
                          List<Post> postList,
                          Set<Tech> skills,
-                         String expertise) {
+                         String expertise,
+                         String bio
+    ) {
         this.username = username;
         this.name = name;
         this.projectList = projectList;
         this.postList = postList;
         this.skills = skills;
         this.expertise = expertise;
+        this.bio = bio;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getUsername() {
