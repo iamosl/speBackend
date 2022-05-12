@@ -218,3 +218,4 @@
 {"@timestamp":"2022-05-11T18:19:47.739+05:30","@version":"1","message":"get all projects of a user","logger_name":"com.spe.backend.controller.ProjectController","thread_name":"http-nio-9090-exec-6","level":"INFO","level_value":20000}
 {"@timestamp":"2022-05-11T18:19:48.493+05:30","@version":"1","message":"get all posts by user id","logger_name":"com.spe.backend.controller.PostController","thread_name":"http-nio-9090-exec-8","level":"INFO","level_value":20000}
 {"@timestamp":"2022-05-11T18:19:49.595+05:30","@version":"1","message":"get all projects of a user","logger_name":"com.spe.backend.controller.ProjectController","thread_name":"http-nio-9090-exec-9","level":"INFO","level_value":20000}
+{"@timestamp":"2022-05-12T08:57:18.392+05:30","@version":"1","message":"Sign Up new user","logger_name":"com.spe.backend.controller.UserController","thread_name":"http-nio-9090-exec-5","level":"INFO","level_value":20000}

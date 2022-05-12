@@ -57,7 +57,7 @@ public class PostController {
 
 	@PreAuthorize("hasPermission(#id,'post_user:delete')")
 	@DeleteMapping(path="/delete/{id}")
-	public void deleteProjectbyId(@PathVariable(value = "id", required = true) long id)
+	public void deletePostbyId(@PathVariable(value = "id", required = true) long id)
 	{
 		logger.info("delete a post");
 		ServiceHandler.deleteProject(id);
